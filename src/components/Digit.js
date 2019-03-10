@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styles from './Digit.module.css'
 
 const Digit = props => {
-  const imageSource = '/images/' + props.value + '.png'
+  const imageSource = process.env.PUBLIC_URL + '/images/' + props.value + '.png'
   return (
     <div>
       <img className={styles.digit} src={imageSource} alt={props.value} />
