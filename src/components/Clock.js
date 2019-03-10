@@ -6,10 +6,6 @@ import Digit from './Digit'
 import styles from './Clock.module.css'
 
 class Clock extends Component {
-  componentDidMount () {
-    this.props.timer.countDown()
-  }
-
   render () {
     const displayTime = this.props.timer.state.displayTime
     return (
@@ -29,7 +25,6 @@ class Clock extends Component {
 
 Clock.propTypes = {
   timer: PropTypes.shape({
-    countDown: PropTypes.func.isRequired,
     state: PropTypes.shape({
       displayTime: PropTypes.string.isRequired
     })

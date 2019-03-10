@@ -9,10 +9,14 @@ export default class ClockContainer extends Container {
     }
   }
 
-  countDown () {
-    // 今から３分後にendTimeをセット
-    this.endTime = (new Date()).getTime() + (1000 * 60 * 3)
-    this.tick()
+  action (type) {
+    switch (type) {
+      case 'START':
+        this.endTime = (new Date()).getTime() + (1000 * 60 * 3)
+        this.tick()
+        break
+      default:
+    }
   }
 
   tick () {
