@@ -12,10 +12,10 @@ class Clock extends Component {
       <div className={styles.clock}>
         <Digit value={displayTime.slice(0, 1)} />
         <Digit value={displayTime.slice(1, 2)} />
-        <Digit value={displayTime.slice(2, 3)} />
+        <Digit value={':'} />
         <Digit value={displayTime.slice(3, 4)} />
         <Digit value={displayTime.slice(4, 5)} />
-        <Digit value={displayTime.slice(5, 6)} />
+        <Digit value={':'} />
         <Digit value={displayTime.slice(6, 7)} />
         <Digit value={displayTime.slice(7, 8)} />
       </div>
