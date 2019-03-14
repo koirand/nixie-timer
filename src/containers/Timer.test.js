@@ -12,28 +12,24 @@ it('action', () => {
 describe('getMSec', () => {
   it('get the correct milliseconds of time', async () => {
     await timer.setState({
-      time: {
-        h10: 0,
-        h1: 0,
-        m10: 0,
-        m1: 3,
-        s10: 0,
-        s1: 0
-      }
+      h10: 0,
+      h1: 0,
+      m10: 0,
+      m1: 3,
+      s10: 0,
+      s1: 0
     })
     expect(timer.getMSec()).toBe(180000)
   })
 
   it('throw if format is wrong', async () => {
     await timer.setState({
-      time: {
-        h10: 'x',
-        h1: 0,
-        m10: 0,
-        m1: 3,
-        s10: 0,
-        s1: 0
-      }
+      h10: 'x',
+      h1: 0,
+      m10: 0,
+      m1: 3,
+      s10: 0,
+      s1: 0
     })
     expect(() => {
       timer.getMSec()
@@ -43,9 +39,8 @@ describe('getMSec', () => {
 
 describe('setTimeFromMsec', () => {
   it('set time from milliseconds', async () => {
-    console.log(timer.state.time.h10)
     await timer.setTimeFromMsec(180000)
-    expect(timer.state.time).toEqual({
+    expect(timer.state).toMatchObject({
       h10: 0,
       h1: 0,
       m10: 0,
