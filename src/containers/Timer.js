@@ -1,17 +1,14 @@
 import { Container } from 'unstated'
 
 export default class ClockContainer extends Container {
-  constructor () {
-    super()
-    this.state = {
-      time: {
-        h10: 0,
-        h1: 0,
-        m10: 0,
-        m1: 3,
-        s10: 0,
-        s1: 0
-      }
+  state = {
+    time: {
+      h10: 0,
+      h1: 0,
+      m10: 0,
+      m1: 3,
+      s10: 0,
+      s1: 0
     }
   }
 
