@@ -7,7 +7,7 @@ it('renders without crashing', () => {
   const div = document.createElement('div')
   ReactDOM.render(
     <Provider>
-      <Button value='START' />
+      <Button type='START' />
     </Provider>
     , div
   )

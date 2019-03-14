@@ -10,7 +10,7 @@ class App extends Component {
         <div>
           <Clock />
           <div className={styles.buttonContainer}>
-            <Button value='START' />
+            <Button type='START' />
           </div>
         </div>
       </div>

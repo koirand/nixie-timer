@@ -9,12 +9,12 @@ const Button = props => {
     <Subscribe to={[Timer]}>
       {timer => {
         return (
-          <span
+          <div
             className={styles.button}
-            onClick={() => timer.action(props.value)}
+            onClick={() => timer.action(props.type)}
           >
-            {props.value}
-          </span>
+            {props.type}
+          </div>
         )
       }}
     </Subscribe>
@@ -22,7 +22,7 @@ const Button = props => {
 }
 
 Button.propTypes = {
-  value: PropTypes.string.isRequired
+  type: PropTypes.string.isRequired
 }
 
 export default Button
