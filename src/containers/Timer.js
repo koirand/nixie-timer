@@ -1,5 +1,4 @@
 import { Container } from 'unstated'
-import { timeToString } from '../lib/TimeUtil'
 
 export default class ClockContainer extends Container {
   constructor () {
@@ -7,6 +6,23 @@ export default class ClockContainer extends Container {
     this.state = {
       displayTime: '00:03:00'
     }
+  }
+
+  stringToTime = string => {
+    const time = new Date('1970/01/01 ' + string + 'Z').getTime()
+    if (isNaN(time)) {
+      throw new Error('Invalid param')
+    }
+    return time
+  }
+
+  timeToString = time => {
+    const string = new Date(time).toISOString()
+    return (
+      string.slice(11, 13) + ':' +
+      string.slice(14, 16) + ':' +
+      string.slice(17, 19)
+    )
   }
 
   action (type) {
@@ -25,7 +41,7 @@ export default class ClockContainer extends Container {
     const remaininTime = this.endTime - nowTime
     if (remaininTime >= 0) {
       this.setState({
-        displayTime: timeToString(remaininTime)
+        displayTime: this.timeToString(remaininTime)
       })
       window.requestAnimationFrame(this.tick.bind(this))
     }
