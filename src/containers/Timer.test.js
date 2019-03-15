@@ -5,10 +5,6 @@ beforeEach(() => {
   timer = new Timer()
 })
 
-it('action', () => {
-  timer.action('START')
-})
-
 describe('getMSec', () => {
   it('get the correct milliseconds of time', async () => {
     await timer.setState({
@@ -55,4 +51,56 @@ describe('setTimeFromMsec', () => {
       timer.setTimeFromMsec('00:03:00')
     }).toThrow()
   })
+})
+
+it('execute start action', () => {
+  timer.action('START')
+})
+
+it('execute start action', async () => {
+  await timer.setState({
+    h10: 5,
+    h1: 0,
+    m10: 0,
+    m1: 0,
+    s10: 0,
+    s1: 0
+  })
+  await timer.action('INCREMENT', 'h10')
+  expect(timer.state.h10).toBe(6)
+
+  await timer.setState({
+    h10: 0,
+    h1: 0,
+    m10: 5,
+    m1: 0,
+    s10: 0,
+    s1: 0
+  })
+  await timer.action('INCREMENT', 'm10')
+  expect(timer.state.m10).toBe(0)
+})
+
+it('execute start action', async () => {
+  await timer.setState({
+    h10: 0,
+    h1: 0,
+    m10: 0,
+    m1: 0,
+    s10: 0,
+    s1: 0
+  })
+  await timer.action('DECREMENT', 'h10')
+  expect(timer.state.h10).toBe(9)
+
+  await timer.setState({
+    h10: 0,
+    h1: 0,
+    m10: 0,
+    m1: 0,
+    s10: 0,
+    s1: 0
+  })
+  await timer.action('DECREMENT', 'm10')
+  expect(timer.state.m10).toBe(5)
 })
