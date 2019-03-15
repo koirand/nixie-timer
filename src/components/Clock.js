@@ -1,41 +1,57 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { Subscribe } from 'unstated'
 import Timer from '../containers/Timer'
 import Digit from './Digit'
+import Arrow from './Arrow'
 import styles from './Clock.module.css'
 
 class Clock extends Component {
   render () {
-    const displayTime = this.props.timer.state.displayTime
     return (
-      <div className={styles.clock}>
-        <Digit value={displayTime.slice(0, 1)} />
-        <Digit value={displayTime.slice(1, 2)} />
-        <Digit value={displayTime.slice(2, 3)} />
-        <Digit value={displayTime.slice(3, 4)} />
-        <Digit value={displayTime.slice(4, 5)} />
-        <Digit value={displayTime.slice(5, 6)} />
-        <Digit value={displayTime.slice(6, 7)} />
-        <Digit value={displayTime.slice(7, 8)} />
-      </div>
+      <Subscribe to={[Timer]}>
+        {timer => {
+          return (
+            <div className={styles.clock}>
+              <table>
+                <tbody>
+                  <tr>
+                    <td><Arrow type='INCREMENT' value='h10' /></td>
+                    <td><Arrow type='INCREMENT' value='h1' /></td>
+                    <td></td>
+                    <td><Arrow type='INCREMENT' value='m10' /></td>
+                    <td><Arrow type='INCREMENT' value='m1' /></td>
+                    <td></td>
+                    <td><Arrow type='INCREMENT' value='s10' /></td>
+                    <td><Arrow type='INCREMENT' value='s1' /></td>
+                  </tr>
+                  <tr>
+                    <td><Digit value={String(timer.state.h10)} /></td>
+                    <td><Digit value={String(timer.state.h1)} /></td>
+                    <td><Digit value={':'} /></td>
+                    <td><Digit value={String(timer.state.m10)} /></td>
+                    <td><Digit value={String(timer.state.m1)} /></td>
+                    <td><Digit value={':'} /></td>
+                    <td><Digit value={String(timer.state.s10)} /></td>
+                    <td><Digit value={String(timer.state.s1)} /></td>
+                  </tr>
+                  <tr>
+                    <td><Arrow type='DECREMENT' value='h10' /></td>
+                    <td><Arrow type='DECREMENT' value='h1' /></td>
+                    <td></td>
+                    <td><Arrow type='DECREMENT' value='m10' /></td>
+                    <td><Arrow type='DECREMENT' value='m1' /></td>
+                    <td></td>
+                    <td><Arrow type='DECREMENT' value='s10' /></td>
+                    <td><Arrow type='DECREMENT' value='s1' /></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          )
+        }}
+      </Subscribe>
     )
   }
 }
 
-Clock.propTypes = {
-  timer: PropTypes.shape({
-    state: PropTypes.shape({
-      displayTime: PropTypes.string.isRequired
-    })
-  }).isRequired
-}
-
-// HOC
-const ClockWrapper = (props) => (
-  <Subscribe to={[Timer]}>
-    {timer => <Clock {...props} timer={timer} />}
-  </Subscribe>
-)
-
-export default ClockWrapper
+export default Clock
