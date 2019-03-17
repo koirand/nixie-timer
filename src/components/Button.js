@@ -1,28 +1,24 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { Subscribe } from 'unstated'
 import Timer from '../containers/Timer'
 import styles from './Button.module.css'
 
-const Button = props => {
+const Button = () => {
   return (
     <Subscribe to={[Timer]}>
       {timer => {
+        const type = timer.state.status === 'STOPPED' ? 'START' : 'STOP'
         return (
           <div
             className={styles.button}
-            onClick={() => timer.action(props.type)}
+            onClick={() => timer.action(type)}
           >
-            {props.type}
+            {type}
           </div>
         )
       }}
     </Subscribe>
   )
-}
-
-Button.propTypes = {
-  type: PropTypes.string.isRequired
 }
 
 export default Button
