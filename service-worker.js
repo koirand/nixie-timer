@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/nixie-timer/precache-manifest.10ad543c5b157bd0b209bab6c59e2ad2.js"
+  "/nixie-timer/precache-manifest.6354c3ac563505fd310abc45f8ed0095.js"
 );
 
 workbox.clientsClaim();
