@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Subscribe } from 'unstated'
 import Timer from '../containers/Timer'
-// import styles from './Arrow.module.css'
+import styles from './Arrow.module.css'
 
 const Arrow = props => {
   const imageSource = (props.type === 'INCREMENT')
@@ -14,6 +14,7 @@ const Arrow = props => {
       {timer => {
         return (
           <img
+            className={styles.arrow}
             src={imageSource}
             alt={props.type}
             onClick={() => {
