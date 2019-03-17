@@ -2,6 +2,7 @@ import { Container } from 'unstated'
 
 export default class ClockContainer extends Container {
   state = {
+    status: 'STOPPED',
     h10: 0,
     h1: 0,
     m10: 0,
@@ -9,6 +10,8 @@ export default class ClockContainer extends Container {
     s10: 0,
     s1: 0
   }
+
+  requestId = null
 
   getMSec = () => {
     const mSec = new Date(
@@ -42,8 +45,15 @@ export default class ClockContainer extends Container {
   action (type, value) {
     switch (type) {
       case 'START':
+        this.setState({ status: 'RUNNING' })
         this.endMSec = (new Date()).getTime() + this.getMSec()
         this.tick()
+        break
+      case 'STOP':
+        this.setState({ status: 'STOPPED' })
+        if (this.requestId) {
+          window.cancelAnimationFrame(this.requestId)
+        }
         break
       case 'INCREMENT': {
         const newState = {}
@@ -75,7 +85,7 @@ export default class ClockContainer extends Container {
     const remaininMSec = this.endMSec - nowMSec
     if (remaininMSec >= 0) {
       this.setTimeFromMsec(remaininMSec)
-      window.requestAnimationFrame(this.tick.bind(this))
+      this.requestId = window.requestAnimationFrame(this.tick.bind(this))
     }
   }
 }
