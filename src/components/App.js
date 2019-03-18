@@ -6,15 +6,17 @@ import styles from './App.module.css'
 class App extends Component {
   render () {
     return (
-      <div className={styles.app} >
+      <div>
         <header className={styles.header}>
-          <h1 className={styles.title}>nixie-timer</h1>
-          <i
-            className={'fab fa-github ' + styles.github}
-            onClick={() => { window.location.href = 'https://github.com/koirand/nixie-timer' }}
-          />
+          <h1 className={styles.title}>
+            nixie-timer
+            <i
+              className={'fab fa-github ' + styles.githubIcon}
+              onClick={() => { window.location.href = 'https://github.com/koirand/nixie-timer' }}
+            />
+          </h1>
         </header>
-        <div>
+        <div className={styles.main}>
           <Clock />
           <div className={styles.buttonContainer}>
             <Button />

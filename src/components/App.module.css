@@ -1,29 +1,24 @@
-.app {
-  width: 80vw;
-}
-
 .header {
   display: flex;
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  background-color: #220E00;
+  color: #e6b871;
 }
 
 .title {
-  margin: 20px 0 20px 40px;
-  flex: 1;
-  color: #e6b871;
+  margin: 10px 20px;
   font-family: "Courier New";
 }
 
-.github {
-  margin: 20px 40px 20px 0;
-  width: 30px;
-  font-size: 30px;
-  color: #e6b871;
+.githubIcon {
+  margin-left: 20px;
   cursor: pointer;
+}
+
+.main {
+  width: 90vw;
+  padding-top: 60px;
 }
 
 .buttonContainer {
