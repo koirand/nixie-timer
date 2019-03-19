@@ -14,12 +14,13 @@ export default class ClockContainer extends Container {
   requestId = null
 
   getMSec = () => {
-    const mSec = new Date(
-      '1970/01/01 ' +
-      this.state.h10 + this.state.h1 + ':' +
-      this.state.m10 + this.state.m1 + ':' +
-      this.state.s10 + this.state.s1 + 'Z'
-    ).getTime()
+    const mSec =
+      this.state.h10 * 36000000 +
+      this.state.h1 * 3600000 +
+      this.state.m10 * 600000 +
+      this.state.m1 * 60000 +
+      this.state.s10 * 10000 +
+      this.state.s1 * 1000
 
     if (isNaN(mSec)) {
       throw new Error('Invalid param')
