@@ -15,6 +15,10 @@ const Arrow = props => {
         return (
           <img
             className={styles.arrow}
+            style={{
+              visibility: timer.state.status === 'STOPPED' ? '' : 'hidden',
+              opacity: timer.state.status === 'STOPPED' ? 1 : 0
+            }}
             src={imageSource}
             alt={props.type}
             onClick={() => {
