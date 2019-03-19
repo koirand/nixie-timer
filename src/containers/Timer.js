@@ -6,7 +6,7 @@ export default class ClockContainer extends Container {
     h10: 0,
     h1: 0,
     m10: 0,
-    m1: 3,
+    m1: 0,
     s10: 0,
     s1: 0
   }
@@ -87,7 +87,17 @@ export default class ClockContainer extends Container {
     // endTimeまでの時間を計算してdisplayTimeを更新
     const nowMSec = new Date().getTime()
     const remaininMSec = this.endMSec - nowMSec
-    if (remaininMSec >= 0) {
+    if (remaininMSec < 0) {
+      this.setState({
+        status: 'STOPPED',
+        h10: 0,
+        h1: 0,
+        m10: 0,
+        m1: 0,
+        s10: 0,
+        s1: 0
+      })
+    } else {
       this.setTimeFromMsec(remaininMSec)
       this.requestId = window.requestAnimationFrame(this.tick.bind(this))
     }
