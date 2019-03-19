@@ -57,22 +57,26 @@ export default class ClockContainer extends Container {
         break
       case 'INCREMENT': {
         const newState = {}
-        if (value === 'm10' || value === 's10') {
-          newState[value] = (this.state[value] + 1) % 6
-        } else {
-          newState[value] = (this.state[value] + 1) % 10
+        if (this.state.status === 'STOPPED') {
+          if (value === 'm10' || value === 's10') {
+            newState[value] = (this.state[value] + 1) % 6
+          } else {
+            newState[value] = (this.state[value] + 1) % 10
+          }
+          this.setState(newState)
         }
-        this.setState(newState)
         break
       }
       case 'DECREMENT': {
         const newState = {}
-        if (value === 'm10' || value === 's10') {
-          newState[value] = (this.state[value] + 5) % 6
-        } else {
-          newState[value] = (this.state[value] + 9) % 10
+        if (this.state.status === 'STOPPED') {
+          if (value === 'm10' || value === 's10') {
+            newState[value] = (this.state[value] + 5) % 6
+          } else {
+            newState[value] = (this.state[value] + 9) % 10
+          }
+          this.setState(newState)
         }
-        this.setState(newState)
         break
       }
       default:
