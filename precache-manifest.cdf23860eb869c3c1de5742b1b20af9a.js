@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "/nixie-timer/static/js/runtime~main.e4c5998c.js"
   },
   {
-    "revision": "9529cf3ef67203946531",
+    "revision": "bf8dd7d108183336b66e",
     "url": "/nixie-timer/static/js/main.76c53a4c.chunk.js"
   },
   {
@@ -12,11 +12,11 @@ self.__precacheManifest = [
     "url": "/nixie-timer/static/js/2.98060204.chunk.js"
   },
   {
-    "revision": "9529cf3ef67203946531",
-    "url": "/nixie-timer/static/css/main.0d2855ff.chunk.css"
+    "revision": "bf8dd7d108183336b66e",
+    "url": "/nixie-timer/static/css/main.f86c7406.chunk.css"
   },
   {
-    "revision": "796a88f864de0fe4384f9ab5dfc9b704",
+    "revision": "30af48ede8f34e337f82fe07274ee02e",
     "url": "/nixie-timer/index.html"
   }
 ];
