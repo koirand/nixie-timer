@@ -2,8 +2,7 @@ nixie-timer
 ===
 ![Screenshot](https://user-images.githubusercontent.com/17229643/54739890-f4a7f300-4bfc-11e9-8d08-34c8e7e42893.png)
 
-This is countdown timer which moves on browser. It looks like a Nixie tube.
-I made this for practice of React and unstated.
+This is countdown timer which moves on browser. It looks like a nixie tube. I made this for practice of React and Unstated.
 
 ## Demo
 https://koirand.github.io/nixie-timer/
