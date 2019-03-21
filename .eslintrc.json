@@ -1,3 +1,6 @@
 {
-  "extends": ["react-app", "standard"]
+  "extends": ["react-app", "standard"],
+  "rules": {
+    "react/prop-types": 2
+  }
 }
