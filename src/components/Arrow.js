@@ -32,7 +32,8 @@ const Arrow = props => {
 }
 
 Arrow.propTypes = {
-  type: PropTypes.string.isRequired
+  type: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired
 }
 
 export default Arrow
