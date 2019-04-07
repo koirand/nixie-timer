@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { Subscribe } from 'unstated'
 import Clock from './Clock'
@@ -6,21 +6,15 @@ import StartButton from './StartButton'
 import Timer from '../containers/Timer.js'
 import styles from './App.module.css'
 
-class App extends Component {
-  componentDidMount = () => {
-    window.onclick = () => {
-      this.props.timer.action('STOP')
-    }
-  }
-
-  render () {
-    return (
+const App = () => (
+  <Subscribe to={[Timer]}>
+    {timer =>
       <div>
         <header
           className={styles.header}
           style={{
-            visibility: this.props.timer.state.status === 'STOPPED' ? '' : 'hidden',
-            opacity: this.props.timer.state.status === 'STOPPED' ? 1 : 0
+            visibility: timer.state.status === 'STOPPED' ? '' : 'hidden',
+            opacity: timer.state.status === 'STOPPED' ? 1 : 0
           }}
         >
           <h1 className={styles.title}>
@@ -36,17 +30,17 @@ class App extends Component {
           <div
             className={styles.buttonContainer}
             style={{
-              visibility: this.props.timer.state.status === 'STOPPED' ? '' : 'hidden',
-              opacity: this.props.timer.state.status === 'STOPPED' ? 1 : 0
+              visibility: timer.state.status === 'STOPPED' ? '' : 'hidden',
+              opacity: timer.state.status === 'STOPPED' ? 1 : 0
             }}
           >
             <StartButton />
           </div>
         </div>
       </div>
-    )
-  }
-}
+    }
+  </Subscribe>
+)
 
 App.propTypes = {
   timer: PropTypes.shape({
@@ -57,11 +51,4 @@ App.propTypes = {
   }).isRequired
 }
 
-// HOC
-const AppWrapper = () => (
-  <Subscribe to={[Timer]}>
-    {timer => <App timer={timer} />}
-  </Subscribe>
-)
-
-export default AppWrapper
+export default App
