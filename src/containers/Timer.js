@@ -1,17 +1,24 @@
 import { Container } from 'unstated'
 
 export default class ClockContainer extends Container {
-  state = {
-    status: 'STOPPED',
-    h10: 0,
-    h1: 0,
-    m10: 0,
-    m1: 0,
-    s10: 0,
-    s1: 0
-  }
+  constructor (props) {
+    super(props)
+    this.state = {
+      status: 'STOPPED',
+      h10: 0,
+      h1: 0,
+      m10: 0,
+      m1: 0,
+      s10: 0,
+      s1: 0
+    }
 
-  requestId = null
+    window.onclick = () => {
+      this.action('STOP')
+    }
+
+    this.requestId = null
+  }
 
   getMSec = () => {
     const mSec =
@@ -43,7 +50,7 @@ export default class ClockContainer extends Container {
     })
   }
 
-  action (type, value) {
+  action = (type, value) => {
     switch (type) {
       case 'START':
         this.setState({ status: 'RUNNING' })
@@ -84,7 +91,7 @@ export default class ClockContainer extends Container {
     }
   }
 
-  tick () {
+  tick = () => {
     // endTimeまでの時間を計算してdisplayTimeを更新
     const nowMSec = new Date().getTime()
     const remaininMSec = this.endMSec - nowMSec
