@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { Subscribe } from 'unstated'
 import Clock from './Clock'
 import StartButton from './StartButton'
@@ -41,14 +40,5 @@ const App = () => (
     }
   </Subscribe>
 )
-
-App.propTypes = {
-  timer: PropTypes.shape({
-    action: PropTypes.func.isRequired,
-    state: PropTypes.shape({
-      status: PropTypes.string.isRequired
-    })
-  }).isRequired
-}
 
 export default App
