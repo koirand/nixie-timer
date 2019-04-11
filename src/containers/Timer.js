@@ -1,6 +1,6 @@
 import { Container } from 'unstated'
 
-export default class ClockContainer extends Container {
+export default class Timer extends Container {
   constructor (props) {
     super(props)
     this.state = {
