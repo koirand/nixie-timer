@@ -7,7 +7,7 @@ import styles from './Clock.module.css'
 
 const Clock = () => (
   <Subscribe to={[Timer]}>
-    {timer => {
+    {(timer: Timer) => {
       return (
         <div className={styles.clock}>
           <table>

@@ -5,7 +5,7 @@ import styles from './StartButton.module.css'
 
 const Button = () => (
   <Subscribe to={[Timer]}>
-    {timer => {
+    {(timer: Timer) => {
       return (
         <div
           className={styles.startButton}

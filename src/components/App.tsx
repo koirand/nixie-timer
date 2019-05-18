@@ -2,18 +2,18 @@ import React from 'react'
 import { Subscribe } from 'unstated'
 import Clock from './Clock'
 import StartButton from './StartButton'
-import Timer from '../containers/Timer.js'
+import { default as Timer, Status } from '../containers/Timer'
 import styles from './App.module.css'
 
 const App = () => (
   <Subscribe to={[Timer]}>
-    {timer =>
+    {(timer: Timer) =>
       <div>
         <header
           className={styles.header}
           style={{
-            visibility: timer.state.status === 'STOPPED' ? '' : 'hidden',
-            opacity: timer.state.status === 'STOPPED' ? 1 : 0
+            visibility: timer.state.status === Status.STOPPED ? 'visible' : 'hidden',
+            opacity: timer.state.status === Status.STOPPED ? 1 : 0
           }}
         >
           <h1 className={styles.title}>
@@ -29,8 +29,8 @@ const App = () => (
           <div
             className={styles.buttonContainer}
             style={{
-              visibility: timer.state.status === 'STOPPED' ? '' : 'hidden',
-              opacity: timer.state.status === 'STOPPED' ? 1 : 0
+              visibility: timer.state.status === Status.STOPPED ? 'visible' : 'hidden',
+              opacity: timer.state.status === Status.STOPPED ? 1 : 0
             }}
           >
             <StartButton />

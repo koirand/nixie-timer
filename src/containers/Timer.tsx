@@ -1,10 +1,30 @@
 import { Container } from 'unstated'
 
-export default class Timer extends Container {
-  constructor (props) {
-    super(props)
+export enum Status {
+  RUNNING,
+  STOPPED
+}
+
+interface TimerState {
+  status: Status,
+  h10: number,
+  h1: number,
+  m10: number,
+  m1: number,
+  s10: number,
+  s1: number
+}
+
+export default class Timer extends Container<TimerState> {
+  requestId : number
+  endMSec: number
+
+  constructor () {
+    super()
+    this.requestId = 0
+    this.endMSec = 0
     this.state = {
-      status: 'STOPPED',
+      status: Status.STOPPED,
       h10: 0,
       h1: 0,
       m10: 0,
@@ -16,8 +36,6 @@ export default class Timer extends Container {
     window.onclick = () => {
       this.action('STOP')
     }
-
-    this.requestId = null
   }
 
   getMSec = () => {
@@ -35,7 +53,7 @@ export default class Timer extends Container {
     return mSec
   }
 
-  setTimeFromMsec = mSec => {
+  setTimeFromMsec = (mSec: number) => {
     if (isNaN(mSec)) {
       throw new Error('Invalid param')
     }
@@ -50,25 +68,25 @@ export default class Timer extends Container {
     })
   }
 
-  action = (type, value) => {
+  action = (type: string, value?: string) => {
     switch (type) {
       case 'START':
-        this.setState({ status: 'RUNNING' })
+        this.setState({ status: Status.RUNNING })
         this.endMSec = (new Date()).getTime() + this.getMSec()
         this.tick()
         break
       case 'STOP':
-        this.setState({ status: 'STOPPED' })
+        this.setState({ status: Status.STOPPED })
         if (this.requestId) {
           window.cancelAnimationFrame(this.requestId)
         }
         break
       case 'INCREMENT': {
         const newState = {}
-        if (this.state.status === 'STOPPED') {
+        if (this.state.status === Status.STOPPED) {
           if (value === 'm10' || value === 's10') {
             newState[value] = (this.state[value] + 1) % 6
-          } else {
+          } else if (value) {
             newState[value] = (this.state[value] + 1) % 10
           }
           this.setState(newState)
@@ -77,10 +95,10 @@ export default class Timer extends Container {
       }
       case 'DECREMENT': {
         const newState = {}
-        if (this.state.status === 'STOPPED') {
+        if (this.state.status === Status.STOPPED) {
           if (value === 'm10' || value === 's10') {
             newState[value] = (this.state[value] + 5) % 6
-          } else {
+          } else if (value) {
             newState[value] = (this.state[value] + 9) % 10
           }
           this.setState(newState)
@@ -97,7 +115,7 @@ export default class Timer extends Container {
     const remaininMSec = this.endMSec - nowMSec
     if (remaininMSec < 0) {
       this.setState({
-        status: 'STOPPED',
+        status: Status.STOPPED,
         h10: 0,
         h1: 0,
         m10: 0,

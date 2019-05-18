@@ -1,23 +1,27 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { Subscribe } from 'unstated'
-import Timer from '../containers/Timer'
+import { default as Timer, Status } from '../containers/Timer'
 import styles from './Arrow.module.css'
 
-const Arrow = props => {
+interface ArrowProps {
+  type: string,
+  value: string
+}
+
+const Arrow = (props: ArrowProps) => {
   const imageSource = (props.type === 'INCREMENT')
     ? process.env.PUBLIC_URL + '/images/arrow-up.png'
     : process.env.PUBLIC_URL + '/images/arrow-down.png'
 
   return (
     <Subscribe to={[Timer]}>
-      {timer => {
+      {(timer: Timer) => {
         return (
           <img
             className={styles.arrow}
             style={{
-              visibility: timer.state.status === 'STOPPED' ? '' : 'hidden',
-              opacity: timer.state.status === 'STOPPED' ? 1 : 0
+              visibility: timer.state.status === Status.STOPPED ? 'visible' : 'hidden',
+              opacity: timer.state.status === Status.STOPPED ? 1 : 0
             }}
             src={imageSource}
             alt={props.type}
@@ -29,11 +33,6 @@ const Arrow = props => {
       }}
     </Subscribe>
   )
-}
-
-Arrow.propTypes = {
-  type: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired
 }
 
 export default Arrow
